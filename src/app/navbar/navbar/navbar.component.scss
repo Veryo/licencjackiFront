@@ -1,0 +1,10 @@
+.navbar-container {
+    width: 200px;
+    height:100%;
+    border: 1px solid #555;
+    text-align: center;
+
+    .navbar-items > * {
+      width: 100%; /* Ensures all direct children take up full width */
+      }
+  }
