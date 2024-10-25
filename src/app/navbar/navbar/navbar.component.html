@@ -1,9 +1,20 @@
 <mat-sidenav-container  class="navbar-container">
-    <mat-toolbar-row>
-        <h3>Alpaca Hub</h3>
-      </mat-toolbar-row>
+    <ng-container *ngIf="!isScreenSmall(); else smallNavbar">
+        <mat-toolbar-row>
+            <h3>Alpaca Hub</h3>
+        </mat-toolbar-row>
+        <mat-list role="list" class="navbar-items">
+            <button mat-fab extended>Alpaca List</button>
+            
+        </mat-list>
+    </ng-container>
 
-    <mat-list role="list" class="navbar-items">
-        <button mat-fab extended>Alpaca List</button>
-    </mat-list>
+    <ng-template #smallNavbar>
+        <mat-toolbar-row>
+        </mat-toolbar-row>
+        <mat-list role="list" class="navbar-items">
+            <button mat-fab extended>Alpaca List</button>
+            
+        </mat-list>
+    </ng-template>
 </mat-sidenav-container>

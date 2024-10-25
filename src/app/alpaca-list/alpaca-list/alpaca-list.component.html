@@ -1,13 +1,24 @@
 <div class="alpaca-list-container">
     <app-navbar></app-navbar>
-    <mat-card appearance="outlined">
-        <mat-card-header>Alpaca List</mat-card-header>
-      
-<cdk-virtual-scroll-viewport itemSize="50000" class="example-viewport">
-    <!-- <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div> -->
-    <div  class="example-item">tetfwfwfwfw</div>
-  </cdk-virtual-scroll-viewport>
-    </mat-card>
+    <div class="alpaca-list">
+        <h3>Alpaca List</h3>
+        <div class="alpaca-list-options-container">
+            <button mat-fab extended>Dodaj alpakę</button>
+            <form class="example-form">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Znajdź alpakę</mat-label>
+                  <input type="text" matInput>
+                  
+                </mat-form-field>
+              </form>
+            <button mat-fab extended>Sortuj</button>
+            <button mat-fab extended>Filtruj</button>
+        </div>
+        <cdk-virtual-scroll-viewport itemSize="20" class="example-viewport">
+            <!-- <div *cdkVirtualFor="let item of items" class="example-item">{{item}}</div> -->
+            <div  class="example-item">tetfwfwfwfw</div>
+        </cdk-virtual-scroll-viewport>
+    </div>
 
    
 </div>

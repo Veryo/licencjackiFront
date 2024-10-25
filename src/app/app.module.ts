@@ -13,6 +13,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatInputModule} from '@angular/material/input';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
     MatButtonModule,
     MatToolbarModule,
     MatCardModule,
-    ScrollingModule
+    ScrollingModule,
+    MatInputModule
   ],
   providers: [
     provideClientHydration(),
