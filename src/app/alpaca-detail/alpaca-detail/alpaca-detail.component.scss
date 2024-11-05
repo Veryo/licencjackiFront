@@ -1,0 +1,110 @@
+@import "../../shared/colors.scss";
+
+.alpaca-list-container{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background-color: $background-color;
+}
+
+.alpaca-container {
+  background-color: $background-color;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  gap: 10px;
+
+  .top-section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 10px;
+  }
+  .info-box {
+    background-color:$green;
+    height: 100%;
+    border-radius: 30px;
+    &.small-box{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    &.large-box {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+     
+    }
+    
+  
+  }
+  .next-to
+  {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .below{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+  .alpaca-content{
+    width: 50%;
+    height: 100%;
+    background-color: $brown;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Small shadow */
+  }
+  .test {
+    height: 100%;
+  }
+  .mat-mdc-tab-group{
+    background-color: $brown;
+  }
+}
+
+button{
+  background-color: $brown;
+  color: $background-color;
+ 
+}
+@media (width <= 1050px) {
+
+  .alpaca-list-container{
+      display: flex;
+      flex-direction: column-reverse;
+      width: 100%;
+      height: 100%;
+
+      overflow-y: hidden;
+  }
+ 
+ 
+  .top-section {
+    min-width: 100%;
+    min-height: 100%;
+    flex-direction: column;
+  }
+  .info-box {
+    height: 100%;
+    border-radius: 30px;
+    &.small-box{
+      min-width: 100%;
+
+    }
+    
+  }
+}
+

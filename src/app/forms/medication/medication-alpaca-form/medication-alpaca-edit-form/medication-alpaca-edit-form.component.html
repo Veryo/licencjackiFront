@@ -1,0 +1,43 @@
+<div class="form-container">
+    <h1 mat-dialog-title>Zapisz Medyczne</h1>
+    <div mat-dialog-content>
+      <form [formGroup]="medicationForm" (ngSubmit)="onSubmit()">
+      
+        <mat-form-field appearance="fill">
+            <mat-label>Nazwa Leku</mat-label>
+            <input matInput formControlName="name" required />
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill">
+            <mat-label>Ilość</mat-label>
+            <input matInput type="number" formControlName="dosage" required />
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill">
+            <mat-label>Jednostka</mat-label>
+            <mat-select formControlName="unit" required>
+              <mat-option *ngFor="let unit of units" [value]="unit">{{ unit }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+          <mat-form-field appearance="fill">
+            <mat-label>Sposób podania</mat-label>
+            <mat-select formControlName="dosageForm" required>
+              <mat-option *ngFor="let form of dosageForms" [value]="form">{{ form }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date" required />
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+    
+        <div mat-dialog-actions>
+          <button mat-button type="button" (click)="onClose()">Cancel</button>
+          <button mat-button type="submit" [disabled]="medicationForm.invalid">Add</button>
+        </div>
+      </form>
+    </div>
+</div>

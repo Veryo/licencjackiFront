@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AlpacaListComponent } from './alpaca-list/alpaca-list/alpaca-list.component';
 import { AppComponent } from './app.component';
+import { AlpacaDetailComponent } from './alpaca-detail/alpaca-detail/alpaca-detail.component';
 const routes: Routes = [
-  {path: '',component: AppComponent},
   {path: 'alpaca-list',component: AlpacaListComponent},
-  { path: '**', redirectTo: '' } 
+  { path: 'alpaca-detail/:id', component: AlpacaDetailComponent },
+  { path: '**', redirectTo: 'alpaca-list' } 
 ];
 
 @NgModule({

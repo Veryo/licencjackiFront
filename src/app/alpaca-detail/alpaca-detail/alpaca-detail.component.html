@@ -1,0 +1,79 @@
+<div class="alpaca-list-container">
+    <app-navbar></app-navbar>
+    <div class="alpaca-container">
+        
+        <div class="top-section">
+            <div class="info-box small-box">
+                
+                <h3>Przypomnienia</h3>
+            </div>
+
+            <div class="info-box small-box">
+                <h3>Podstawowe Informacje</h3>
+                <div class="next-to">
+                    <div class="below">
+                    <h5>Imię</h5>
+                    <div class="alpaca-content">{{alpaca?.name}}</div>
+                    </div>
+                    <div class="below">
+                    <h5>Status</h5>
+                    <div class="alpaca-content">{{alpaca?.status}}</div>
+                </div>
+                
+                </div>
+                <div class="next-to">
+                    <div class="below">
+                    <h5>Płec</h5>
+                    <div class="alpaca-content">{{alpaca?.sex}}</div>
+                    </div>
+                    <div class="below">
+                    <h5>Data Urodzenia</h5>
+                    <div class="alpaca-content">{{alpaca?.dob}}</div>
+                </div>
+                
+                </div>
+                <div class="next-to">
+                    <div class="below">
+                    <h5>Microchip</h5>
+                    <div class="alpaca-content">{{alpaca?.microchip}}</div>
+                    </div>
+                    <div class="below">
+                    <h5>Kolor</h5>
+                    <div class="alpaca-content">{{alpaca?.colors}}</div>
+                </div>
+                
+                </div>
+               
+                <div class="next-to">
+                    <button mat-fab extended (click)="openDialog()">Edytuj alpakę</button>
+                    <button mat-fab extended  color="warn" (click)="deleteAlpaca()">Usuń alpakę</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="top-section">
+            <div class=" info-box large-box">
+                <mat-tab-group (selectedTabChange)="onTabChange($event)">
+                    <mat-tab label="Waga">
+                    </mat-tab>
+                    <mat-tab label="Medyczne">
+                    </mat-tab>
+                    <mat-tab label="Zapisane Medyczne">
+                    </mat-tab>
+                </mat-tab-group>
+                
+                <div class="test">
+                <app-alpaca-weight *ngIf="isWagaTabSelected" [alpacaId]="alpacaId"></app-alpaca-weight>
+                <app-alpaca-medication *ngIf="isMedicationTabSelected" [alpacaId]="alpacaId" ></app-alpaca-medication>
+                <app-medication-recod *ngIf="isMedicationSavedTabSelected"  ></app-medication-recod>
+                </div>
+            </div>
+
+          
+        </div>
+
+    </div>
+</div>
+  
+  
+  
