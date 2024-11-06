@@ -38,7 +38,7 @@ export class AlpacaMedicationRecodComponent {
   deleteMedicationRecord(medicationRecordId:number): void {
     if (medicationRecordId  ) {
         this.alpacaService.deleteMedicationRecord(medicationRecordId).subscribe(() => {
-          this.snackBar.open('Alpaca deleted successfully!', 'Close', { duration: 2000 });
+          this.snackBar.open('Medication Saved deleted successfully!', 'Close', { duration: 2000 });
           this.loadMedicationRecord();
         });
       

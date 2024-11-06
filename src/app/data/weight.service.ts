@@ -16,12 +16,10 @@ export class WeightService {
   }
 
   addWeight(alpacaId: number, weight: Weight): Observable<Weight> {
-    // Send POST request to the server with the alpaca ID in the URL
     return this.http.post<Weight>(`${this.baseUrl}/alpacas/${alpacaId}/weights`, weight);
   }
 
   updateWeight(alpacaId: number,weightId:number,weight: Weight): Observable<Weight> {
-    console.log("testtset",weight)
     return this.http.put<Weight>(`${this.baseUrl}/alpacas/${alpacaId}/weights/${weightId}`,weight);
   }
 

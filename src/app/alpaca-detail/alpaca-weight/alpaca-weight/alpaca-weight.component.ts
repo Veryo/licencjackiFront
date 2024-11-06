@@ -32,7 +32,7 @@ export class AlpacaWeightComponent implements OnInit {
   deleteWeight(weightId:number): void {
     if (weightId  && this.alpacaId) {
         this.weightServie.deleteWeight(this.alpacaId,weightId).subscribe(() => {
-          this.snackBar.open('Alpaca deleted successfully!', 'Close', { duration: 2000 });
+          this.snackBar.open('Weight deleted successfully!', 'Close', { duration: 2000 });
           this.loadWeights();
         });
       

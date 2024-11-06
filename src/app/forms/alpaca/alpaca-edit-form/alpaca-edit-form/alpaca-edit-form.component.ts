@@ -17,13 +17,13 @@ export class AlpacaEditFormComponent {
     public dialogRef: MatDialogRef<AlpacaEditFormComponent>,
     private fb: FormBuilder,
     private alpacaService: AlpacaService,
-    @Inject(MAT_DIALOG_DATA) public data: Alpaca // Expecting Alpaca data to be passed
+    @Inject(MAT_DIALOG_DATA) public data: Alpaca 
   ) {
     this.alpacaForm = this.fb.group({
       name: [data.name, Validators.required],
       status: [data.status, Validators.required],
       sex: [data.sex, Validators.required],
-      dob: [new Date(data.dob), Validators.required], // Convert to Date object
+      dob: [new Date(data.dob), Validators.required], 
       microchip: [data.microchip, Validators.required],
       colors: [data.colors, Validators.required],
     });
@@ -85,9 +85,9 @@ export class AlpacaEditFormComponent {
 
   private formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
+    const month = String(date.getMonth() + 1).padStart(2, '0'); 
     const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`; // Return in "YYYY-MM-DD" format
+    return `${year}-${month}-${day}`; 
   } 
   onClose(): void {
     this.dialogRef.close();

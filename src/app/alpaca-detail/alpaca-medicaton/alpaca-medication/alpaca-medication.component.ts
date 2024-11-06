@@ -55,7 +55,7 @@ export class AlpacaMedicationComponent implements OnInit {
   deleteMedicationAlpaca(medicationAlpacaId:number): void {
     if (medicationAlpacaId  && this.alpacaId) {
         this.alpacaService.deleteMedicationAlpaca(this.alpacaId,medicationAlpacaId).subscribe(() => {
-          this.snackBar.open('Alpaca deleted successfully!', 'Close', { duration: 2000 });
+          this.snackBar.open('Medication deleted successfully!', 'Close', { duration: 2000 });
           this.loadMedicationAlpaca();
         });
       
