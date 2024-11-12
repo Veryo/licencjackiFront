@@ -1,36 +1,33 @@
-@import "../../shared/colors.scss";
+@import '../../shared/colors.scss';
 .navbar-container {
-    width: 100%;
-    height: 100%;
-    border-radius: 0 20px 20px 0;
-    text-align: center;
-    background-color:$brown ; 
-    
-    .navbar-items{
-      display: flex; 
-      flex-direction: column;
-      gap: 10px; 
-    }
-    .navbar-items > * {
-      width: 100%;
-      background-color: $green;
-      color: $background-color;
-      }
-  }
+  width: 100%;
+  height: 100%;
+  border-radius: 0 20px 20px 0;
+  text-align: center;
+  background-color: $brown;
 
+  .navbar-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .navbar-items > * {
+    width: 100%;
+    background-color: $green;
+    color: $background-color;
+  }
+}
 
 @media (width <= 1050px) {
   .navbar-container {
     border: none;
     border-radius: 20px 20px 0 0;
-    .navbar-items{
- 
+    .navbar-items {
       flex-direction: row;
       justify-content: center;
-    
     }
     .navbar-items > * {
-      width: 20%; 
-      }
+      width: 20%;
+    }
   }
 }

@@ -1,29 +1,27 @@
-import { Component,Inject } from '@angular/core';
-import { MAT_DIALOG_DATA,MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Alpaca } from '../../../../data/alpaca.interface'; 
-import { AlpacaService } from '../../../../data/alpaca.service'; 
+import { Alpaca } from '../../../../data/alpaca.interface';
+import { AlpacaService } from '../../../../data/alpaca.service';
 @Component({
   selector: 'app-alpaca-edit-form',
   templateUrl: './alpaca-edit-form.component.html',
-  styleUrl: './alpaca-edit-form.component.scss'
+  styleUrl: './alpaca-edit-form.component.scss',
 })
 export class AlpacaEditFormComponent {
-
-
   alpacaForm: FormGroup;
-  
+
   constructor(
     public dialogRef: MatDialogRef<AlpacaEditFormComponent>,
     private fb: FormBuilder,
     private alpacaService: AlpacaService,
-    @Inject(MAT_DIALOG_DATA) public data: Alpaca 
+    @Inject(MAT_DIALOG_DATA) public data: Alpaca,
   ) {
     this.alpacaForm = this.fb.group({
       name: [data.name, Validators.required],
       status: [data.status, Validators.required],
       sex: [data.sex, Validators.required],
-      dob: [new Date(data.dob), Validators.required], 
+      dob: [new Date(data.dob), Validators.required],
       microchip: [data.microchip, Validators.required],
       colors: [data.colors, Validators.required],
     });
@@ -45,23 +43,20 @@ export class AlpacaEditFormComponent {
     'Ciemny Srebrny Szary',
     'Jasny Różowy Szary',
     'Średni Różowy Szary',
-    'Ciemny Różowy Szary'
+    'Ciemny Różowy Szary',
   ];
-  sexChoices: string[] = [
-    'Samiec',
-    'Samica'
-  ];
+  sexChoices: string[] = ['Samiec', 'Samica'];
 
   statusChoices: string[] = [
-    'Otwarte samice',             // Open Females
-    'Udowodniony hodowca',        // Breeder Proven
-    'Obecne samice hodowlane',    // Current Breeding Females
-    'Młodzież',                   // Juvenile
-    'Pierwszy raz',               // Maiden
-    'Karmiąca',                   // Nursing
-    'Ciężarna',                   // Pregnant
-    'Nieudowodniony',             // Unproven
-    'Roczny'                      // Yearling
+    'Otwarte samice', // Open Females
+    'Udowodniony hodowca', // Breeder Proven
+    'Obecne samice hodowlane', // Current Breeding Females
+    'Młodzież', // Juvenile
+    'Pierwszy raz', // Maiden
+    'Karmiąca', // Nursing
+    'Ciężarna', // Pregnant
+    'Nieudowodniony', // Unproven
+    'Roczny', // Yearling
   ];
 
   onSubmit(): void {
@@ -73,24 +68,23 @@ export class AlpacaEditFormComponent {
       };
 
       this.alpacaService.putAlpaca(this.data.id, updatedAlpaca).subscribe(
-        (savedAlpaca) => {
+        () => {
           this.dialogRef.close(updatedAlpaca);
         },
         (error) => {
           console.error('Error updating alpaca:', error);
-        }
+        },
       );
     }
   }
 
   private formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`; 
-  } 
+    return `${year}-${month}-${day}`;
+  }
   onClose(): void {
     this.dialogRef.close();
   }
-
 }

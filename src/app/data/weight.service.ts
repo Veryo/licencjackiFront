@@ -4,26 +4,39 @@ import { Observable } from 'rxjs';
 import { Weight } from './weight.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class WeightService {
-
   private baseUrl = 'http://localhost:5087/api';
 
   constructor(private http: HttpClient) {}
   getWeight(alpacaId: number): Observable<Weight[]> {
-    return this.http.get<Weight[]>(`${this.baseUrl}/alpacas/${alpacaId}/weights`);
+    return this.http.get<Weight[]>(
+      `${this.baseUrl}/alpacas/${alpacaId}/weights`,
+    );
   }
 
   addWeight(alpacaId: number, weight: Weight): Observable<Weight> {
-    return this.http.post<Weight>(`${this.baseUrl}/alpacas/${alpacaId}/weights`, weight);
+    return this.http.post<Weight>(
+      `${this.baseUrl}/alpacas/${alpacaId}/weights`,
+      weight,
+    );
   }
 
-  updateWeight(alpacaId: number,weightId:number,weight: Weight): Observable<Weight> {
-    return this.http.put<Weight>(`${this.baseUrl}/alpacas/${alpacaId}/weights/${weightId}`,weight);
+  updateWeight(
+    alpacaId: number,
+    weightId: number,
+    weight: Weight,
+  ): Observable<Weight> {
+    return this.http.put<Weight>(
+      `${this.baseUrl}/alpacas/${alpacaId}/weights/${weightId}`,
+      weight,
+    );
   }
 
-  deleteWeight(alpacaId: number,id: number): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}/alpacas/${alpacaId}/weights/${id}`);
+  deleteWeight(alpacaId: number, id: number): Observable<void> {
+    return this.http.delete<void>(
+      `${this.baseUrl}/alpacas/${alpacaId}/weights/${id}`,
+    );
   }
 }

@@ -1,34 +1,42 @@
 <div class="form-container">
-<h1 mat-dialog-title>Add New Weight</h1>
-<div mat-dialog-content>
-  <form [formGroup]="weightForm" (ngSubmit)="onSubmit()">
-  
-    <mat-form-field>
-      <mat-label>Current Weight</mat-label>
-      <input matInput type="number" formControlName="current" required />
-      <mat-error *ngIf="weightForm.get('current')?.hasError('required')">
-        Current weight is required
-      </mat-error>
-      <mat-error *ngIf="weightForm.get('current')?.hasError('min')">
-        Current weight must be a positive number
-      </mat-error>
-    </mat-form-field>
+  <h1 mat-dialog-title>Add New Weight</h1>
+  <div mat-dialog-content>
+    <form [formGroup]="weightForm" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <mat-label>Current Weight</mat-label>
+        <input matInput type="number" formControlName="current" required />
+        <mat-error *ngIf="weightForm.get('current')?.hasError('required')">
+          Current weight is required
+        </mat-error>
+        <mat-error *ngIf="weightForm.get('current')?.hasError('min')">
+          Current weight must be a positive number
+        </mat-error>
+      </mat-form-field>
 
+      <mat-form-field>
+        <mat-label>Date</mat-label>
+        <input
+          matInput
+          [matDatepicker]="picker"
+          formControlName="date"
+          required
+        />
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="weightForm.get('date')?.hasError('required')">
+          Date is required
+        </mat-error>
+      </mat-form-field>
 
-    <mat-form-field>
-      <mat-label>Date</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="date" required />
-      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <mat-error *ngIf="weightForm.get('date')?.hasError('required')">
-        Date is required
-      </mat-error>
-    </mat-form-field>
-
-    <div mat-dialog-actions>
-      <button mat-button type="button" (click)="onClose()">Cancel</button>
-      <button mat-button type="submit" [disabled]="weightForm.invalid">Add</button>
-    </div>
-  </form>
-</div>
+      <div mat-dialog-actions>
+        <button mat-button type="button" (click)="onClose()">Cancel</button>
+        <button mat-button type="submit" [disabled]="weightForm.invalid">
+          Add
+        </button>
+      </div>
+    </form>
+  </div>
 </div>

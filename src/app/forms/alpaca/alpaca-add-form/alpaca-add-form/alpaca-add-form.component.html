@@ -1,8 +1,7 @@
-<div class="form-container"> 
+<div class="form-container">
   <h1 mat-dialog-title>Dodaj nowa alpake</h1>
   <div mat-dialog-content>
     <form [formGroup]="alpacaForm" (ngSubmit)="onSubmit()">
-    
       <mat-form-field>
         <mat-label>Name</mat-label>
         <input matInput formControlName="name" required />
@@ -14,7 +13,9 @@
       <mat-form-field>
         <mat-label>Status</mat-label>
         <mat-select formControlName="status" required>
-          <mat-option *ngFor="let status of statusChoices" [value]="status">{{ status }}</mat-option>
+          <mat-option *ngFor="let status of statusChoices" [value]="status">{{
+            status
+          }}</mat-option>
         </mat-select>
         <mat-error *ngIf="alpacaForm.get('status')?.hasError('required')">
           Status jest wymagany
@@ -24,7 +25,9 @@
       <mat-form-field>
         <mat-label>Sex</mat-label>
         <mat-select formControlName="sex" required>
-          <mat-option *ngFor="let sex of sexChoices" [value]="sex">{{ sex }}</mat-option>
+          <mat-option *ngFor="let sex of sexChoices" [value]="sex">{{
+            sex
+          }}</mat-option>
         </mat-select>
         <mat-error *ngIf="alpacaForm.get('sex')?.hasError('required')">
           Sex is required
@@ -33,12 +36,15 @@
 
       <mat-form-field>
         <mat-label>Wybierz date</mat-label>
-        <input matInput [matDatepicker]="picker" formControlName="dob">
+        <input matInput [matDatepicker]="picker" formControlName="dob" />
         <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker-toggle
+          matIconSuffix
+          [for]="picker"
+        ></mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
-      
+
       <mat-form-field>
         <mat-label>Microchip</mat-label>
         <input matInput formControlName="microchip" required />
@@ -50,18 +56,20 @@
       <mat-form-field>
         <mat-label>Colors</mat-label>
         <mat-select formControlName="colors" required>
-          <mat-option *ngFor="let color of colorChoices" [value]="color">{{ color }}</mat-option>
+          <mat-option *ngFor="let color of colorChoices" [value]="color">{{
+            color
+          }}</mat-option>
         </mat-select>
         <mat-error *ngIf="alpacaForm.get('colors')?.hasError('required')">
           Colors are required
         </mat-error>
       </mat-form-field>
 
-      
-
       <div mat-dialog-actions>
         <button mat-button type="button" (click)="onClose()">Cancel</button>
-        <button mat-button type="submit" [disabled]="alpacaForm.invalid">Add</button>
+        <button mat-button type="submit" [disabled]="alpacaForm.invalid">
+          Add
+        </button>
       </div>
     </form>
   </div>

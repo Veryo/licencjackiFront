@@ -4,16 +4,15 @@ import { Observable } from 'rxjs';
 import { Alpaca } from './alpaca.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AlpacaService {
-
   private baseUrl = 'http://localhost:5087/api';
   constructor(private http: HttpClient) {}
 
   getAlpacas(): Observable<Alpaca[]> {
     return this.http.get<Alpaca[]>(`${this.baseUrl}/alpacas`);
-    }
+  }
   getAlpacaById(id: number): Observable<Alpaca> {
     return this.http.get<Alpaca>(`${this.baseUrl}/alpacas/${id}`);
   }
@@ -28,5 +27,4 @@ export class AlpacaService {
   deleteAlpaca(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/alpacas/${id}`);
   }
-   }
-
+}

@@ -1,8 +1,8 @@
-import { Medication } from "./medication.interface";
+import { Medication } from './medication.interface';
 
 export interface MedicationAlpaca {
-    id: number;
-    alpacaId: number;
-    medicationId?: number; 
-    medication: Medication;
-  }
+  id: number;
+  alpacaId: number;
+  medicationId?: number;
+  medication: Medication;
+}

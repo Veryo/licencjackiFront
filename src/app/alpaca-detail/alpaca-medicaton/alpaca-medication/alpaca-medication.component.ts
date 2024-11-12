@@ -9,61 +9,71 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-alpaca-medication',
   templateUrl: './alpaca-medication.component.html',
-  styleUrl: './alpaca-medication.component.scss'
+  styleUrl: './alpaca-medication.component.scss',
 })
 export class AlpacaMedicationComponent implements OnInit {
-
-
-  @Input() alpacaId: number|undefined;
-  displayedColumns: string[] = [ 'name','dosage','unit','dosageForm','date','menu'];
+  @Input() alpacaId: number | undefined;
+  displayedColumns: string[] = [
+    'name',
+    'dosage',
+    'unit',
+    'dosageForm',
+    'date',
+    'menu',
+  ];
   medicationAlpaca: MedicationAlpaca[] = [];
-  constructor(public dialog: MatDialog,private alpacaService : MedicationAlpacaService,private snackBar: MatSnackBar,) { }
+  constructor(
+    public dialog: MatDialog,
+    private alpacaService: MedicationAlpacaService,
+    private snackBar: MatSnackBar,
+  ) {}
 
   loadMedicationAlpaca(): void {
-    if(this.alpacaId){
-    this.alpacaService.getMedicationAlpaca(this.alpacaId).subscribe((weights) => {
-      console.log(weights)
-      this.medicationAlpaca = weights;
-    });
+    if (this.alpacaId) {
+      this.alpacaService
+        .getMedicationAlpaca(this.alpacaId)
+        .subscribe((weights) => {
+          console.log(weights);
+          this.medicationAlpaca = weights;
+        });
     }
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(MedicationAlpacaAddFormComponent, {
       width: '99%',
-      data: { alpacaId: this.alpacaId }
+      data: { alpacaId: this.alpacaId },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadMedicationAlpaca();
       }
     });
-    
   }
   openEditDialog(medicationAlpaca: MedicationAlpaca): void {
     const dialogRef = this.dialog.open(MedicationAlpacaEditFormComponent, {
       width: '99%',
-      data: { alpacaId: this.alpacaId, medicationAlpaca: medicationAlpaca  }
+      data: { alpacaId: this.alpacaId, medicationAlpaca: medicationAlpaca },
     });
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadMedicationAlpaca();
       }
     });
-    
   }
-  deleteMedicationAlpaca(medicationAlpacaId:number): void {
-    if (medicationAlpacaId  && this.alpacaId) {
-        this.alpacaService.deleteMedicationAlpaca(this.alpacaId,medicationAlpacaId).subscribe(() => {
-          this.snackBar.open('Medication deleted successfully!', 'Close', { duration: 2000 });
+  deleteMedicationAlpaca(medicationAlpacaId: number): void {
+    if (medicationAlpacaId && this.alpacaId) {
+      this.alpacaService
+        .deleteMedicationAlpaca(this.alpacaId, medicationAlpacaId)
+        .subscribe(() => {
+          this.snackBar.open('Medication deleted successfully!', 'Close', {
+            duration: 2000,
+          });
           this.loadMedicationAlpaca();
         });
-      
     }
   }
   ngOnInit(): void {
     this.loadMedicationAlpaca();
-
- 
   }
 }

@@ -1,25 +1,19 @@
-import { Component , HostListener,OnInit   } from '@angular/core';
-
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent implements OnInit {
   public getScreenWidth: any;
   public getScreenHeight: any;
- 
 
-
-  
   ngOnInit() {
     if (typeof window !== 'undefined') {
       this.getScreenWidth = window.innerWidth;
       this.getScreenHeight = window.innerHeight;
     }
-
-  
   }
 
   @HostListener('window:resize', ['$event'])

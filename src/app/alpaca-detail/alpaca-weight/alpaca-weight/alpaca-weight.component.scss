@@ -1,5 +1,5 @@
-@import "../../../shared/colors.scss";
-.test{
+@import '../../../shared/colors.scss';
+.test {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -17,8 +17,7 @@
   height: 80%;
   background-color: $brown;
 }
-.button-add{
+.button-add {
   background-color: $brown;
   color: $background-color;
- 
 }

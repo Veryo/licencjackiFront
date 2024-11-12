@@ -1,45 +1,57 @@
-
 <div class="test">
-
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <table mat-table [dataSource]="weights" class="mat-elevation-z8 example-item">
-  
+  <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+    <table
+      mat-table
+      [dataSource]="weights"
+      class="mat-elevation-z8 example-item"
+    >
       <ng-container matColumnDef="current">
-        <th mat-header-cell *matHeaderCellDef> Teraz </th>
-        <td mat-cell *matCellDef="let weight"> {{weight.current}} </td>
+        <th mat-header-cell *matHeaderCellDef>Teraz</th>
+        <td mat-cell *matCellDef="let weight">{{ weight.current }}</td>
       </ng-container>
       <ng-container matColumnDef="change">
-        <th mat-header-cell mat-header-cell *matHeaderCellDef> Zmiana </th>
-        <td mat-cell *matCellDef="let weight"> {{weight.change}} </td>
+        <th mat-header-cell mat-header-cell *matHeaderCellDef>Zmiana</th>
+        <td mat-cell *matCellDef="let weight">{{ weight.change }}</td>
       </ng-container>
       <ng-container matColumnDef="date">
-        <th mat-header-cell *matHeaderCellDef> Data </th>
-        <td mat-cell *matCellDef="let weight"> {{weight.date}} </td>
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell *matCellDef="let weight">{{ weight.date }}</td>
       </ng-container>
-      
+
       <ng-container matColumnDef="menu">
-        <th mat-header-cell *matHeaderCellDef> menu </th>
-        <td mat-cell *matCellDef="let weight"> 
-          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <th mat-header-cell *matHeaderCellDef>menu</th>
+        <td mat-cell *matCellDef="let weight">
+          <button
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+            aria-label="Example icon-button with a menu"
+          >
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu="matMenu">
-            <button mat-menu-item (click) =   "openEditDialog(weight)">
+            <button mat-menu-item (click)="openEditDialog(weight)">
               <span>Edytuj</span>
             </button>
-            <button mat-menu-item  color="warn" (click)="deleteWeight(weight.id)">
+            <button
+              mat-menu-item
+              color="warn"
+              (click)="deleteWeight(weight.id)"
+            >
               <span>Usuń</span>
             </button>
-            
           </mat-menu>
         </td>
       </ng-container>
-    
-        
-      <tr mat-header-row *matHeaderRowDef=" displayedColumns; sticky:true"></tr>
-      <tr mat-row *matRowDef="let alpaca; columns: displayedColumns;" 
-      style="cursor: pointer;"></tr>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        *matRowDef="let alpaca; columns: displayedColumns"
+        style="cursor: pointer"
+      ></tr>
     </table>
   </cdk-virtual-scroll-viewport>
-  <button class="button-add" mat-fab extended (click)=" openDialog()" >Dodaj</button>
+  <button class="button-add" mat-fab extended (click)="openDialog()">
+    Dodaj
+  </button>
 </div>

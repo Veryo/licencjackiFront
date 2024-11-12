@@ -1,18 +1,17 @@
-<mat-sidenav-container  class="navbar-container">
-    <ng-container *ngIf="!isScreenSmall(); else smallNavbar">
-        <mat-toolbar-row>
-            <h3>Alpaca Hub</h3>
-        </mat-toolbar-row>
-        <mat-list role="list" class="navbar-items">
-            <button mat-fab extended routerLink="/alpaca-list">Alpaca List</button>
-        </mat-list>
-    </ng-container>
+<mat-sidenav-container class="navbar-container">
+  <ng-container *ngIf="!isScreenSmall(); else smallNavbar">
+    <mat-toolbar-row>
+      <h3>Alpaca Hub</h3>
+    </mat-toolbar-row>
+    <mat-list role="list" class="navbar-items">
+      <button mat-fab extended routerLink="/alpaca-list">Alpaca List</button>
+    </mat-list>
+  </ng-container>
 
-    <ng-template #smallNavbar>
-        <mat-toolbar-row>
-        </mat-toolbar-row>
-        <mat-list role="list" class="navbar-items">
-            <button mat-fab extended routerLink="/alpaca-list">Alpaca List</button>
-        </mat-list>
-    </ng-template>
+  <ng-template #smallNavbar>
+    <mat-toolbar-row> </mat-toolbar-row>
+    <mat-list role="list" class="navbar-items">
+      <button mat-fab extended routerLink="/alpaca-list">Alpaca List</button>
+    </mat-list>
+  </ng-template>
 </mat-sidenav-container>

@@ -9,12 +9,12 @@ import { MedicationRecord } from '../../../../data/medicationRecord.interface';
 @Component({
   selector: 'app-medication-alpaca-add-form',
   templateUrl: './medication-alpaca-add-form.component.html',
-  styleUrl: './medication-alpaca-add-form.component.scss'
+  styleUrl: './medication-alpaca-add-form.component.scss',
 })
 export class MedicationAlpacaAddFormComponent implements OnInit {
   medicationForm: FormGroup;
   alpacaId: number;
-  units: string[] = ['µg', 'mg', 'g', 'kg', 'ml', 'l']
+  units: string[] = ['µg', 'mg', 'g', 'kg', 'ml', 'l'];
   dosageForms: string[] = [
     'tabletka',
     'kapsułka',
@@ -23,15 +23,14 @@ export class MedicationAlpacaAddFormComponent implements OnInit {
     'krem',
     'aerozol',
     'czopki',
-    'wstrzyknięcie'
+    'wstrzyknięcie',
   ];
   constructor(
     private fb: FormBuilder,
-    private medicationRecordService : MedicationRecordService,
+    private medicationRecordService: MedicationRecordService,
     private medicationAlpacaService: MedicationAlpacaService,
     public dialogRef: MatDialogRef<MedicationAlpacaAddFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { alpacaId: number }
-  
+    @Inject(MAT_DIALOG_DATA) public data: { alpacaId: number },
   ) {
     this.alpacaId = data.alpacaId;
     this.medicationForm = this.fb.group({
@@ -39,10 +38,9 @@ export class MedicationAlpacaAddFormComponent implements OnInit {
       dosage: ['', Validators.required],
       unit: ['', Validators.required],
       dosageForm: ['', Validators.required],
-      date:[new Date(), Validators.required]
+      date: [new Date(), Validators.required],
     });
   }
-
 
   onSubmit(): void {
     if (this.medicationForm.valid) {
@@ -51,18 +49,17 @@ export class MedicationAlpacaAddFormComponent implements OnInit {
         ...formValue,
         date: this.formatDate(formValue.date),
       };
-      
-  
-      this.medicationAlpacaService.postMedicationAlpaca(this.alpacaId,newMedicationRecord).subscribe(
-        () => {
-          this.dialogRef.close(newMedicationRecord);
-        },
-        (error) => {
-          console.error('Error saving weight:', error);
-        }
-      );
-    
 
+      this.medicationAlpacaService
+        .postMedicationAlpaca(this.alpacaId, newMedicationRecord)
+        .subscribe(
+          () => {
+            this.dialogRef.close(newMedicationRecord);
+          },
+          (error) => {
+            console.error('Error saving weight:', error);
+          },
+        );
     }
   }
   savedRecords: MedicationRecord[] = [];
@@ -77,7 +74,7 @@ export class MedicationAlpacaAddFormComponent implements OnInit {
       },
       (error) => {
         console.error('Error loading saved records:', error);
-      }
+      },
     );
   }
 
@@ -89,14 +86,14 @@ export class MedicationAlpacaAddFormComponent implements OnInit {
         dosage: selectedRecord.medication.dosage,
         unit: selectedRecord.medication.unit,
         dosageForm: selectedRecord.medication.dosageForm,
-        date: new Date(selectedRecord.medication.date)
+        date: new Date(selectedRecord.medication.date),
       });
     }
   }
 
   private formatDate(date: Date): string {
     const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0'); 
+    const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }

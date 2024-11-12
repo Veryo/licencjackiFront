@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlpacaService } from '../../data/alpaca.service';
 import { MatDialog } from '@angular/material/dialog';
 import { Alpaca } from '../../data/alpaca.interface';
@@ -7,17 +7,17 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-alpaca-list',
   templateUrl: './alpaca-list.component.html',
-  styleUrl: './alpaca-list.component.scss'
+  styleUrl: './alpaca-list.component.scss',
 })
-export class AlpacaListComponent implements OnInit{
+export class AlpacaListComponent implements OnInit {
   alpacas: Alpaca[] = [];
-  displayedColumns: string[] = [ 'name','sex','dob','status'];
+  displayedColumns: string[] = ['name', 'sex', 'dob', 'status'];
 
-  
-
-  constructor(private alpacaService: AlpacaService , public dialog: MatDialog, private router: Router) {}
-
-
+  constructor(
+    private alpacaService: AlpacaService,
+    public dialog: MatDialog,
+    private router: Router,
+  ) {}
 
   loadAlpacas(): void {
     this.alpacaService.getAlpacas().subscribe((alpacas) => {
@@ -30,7 +30,7 @@ export class AlpacaListComponent implements OnInit{
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AlpacaAddFormComponent, {
-      width: '99%'
+      width: '99%',
     });
 
     dialogRef.afterClosed().subscribe((result: Alpaca | undefined) => {
@@ -38,11 +38,9 @@ export class AlpacaListComponent implements OnInit{
         this.loadAlpacas();
       }
     });
-
   }
 
   ngOnInit(): void {
     this.loadAlpacas();
   }
- 
 }

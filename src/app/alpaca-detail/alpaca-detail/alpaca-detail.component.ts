@@ -10,26 +10,33 @@ import { MatTabChangeEvent } from '@angular/material/tabs';
 @Component({
   selector: 'app-alpaca-detail',
   templateUrl: './alpaca-detail.component.html',
-  styleUrl: './alpaca-detail.component.scss'
+  styleUrl: './alpaca-detail.component.scss',
 })
-export class AlpacaDetailComponent implements OnInit  {
+export class AlpacaDetailComponent implements OnInit {
   alpacaId: number | undefined;
-  alpaca : Alpaca | undefined;
-  isWagaTabSelected: boolean = true;
-  isMedicationTabSelected: boolean = false;
-  isMedicationSavedTabSelected : boolean = false;
+  alpaca: Alpaca | undefined;
+  isWagaTabSelected = true;
+  isMedicationTabSelected = false;
+  isMedicationSavedTabSelected = false;
 
   onTabChange(event: MatTabChangeEvent) {
-    this.isWagaTabSelected = (event.tab.textLabel === 'Waga');
-    this.isMedicationTabSelected = (event.tab.textLabel === 'Medyczne');
-    this.isMedicationSavedTabSelected = (event.tab.textLabel === 'Zapisane Medyczne');
+    this.isWagaTabSelected = event.tab.textLabel === 'Waga';
+    this.isMedicationTabSelected = event.tab.textLabel === 'Medyczne';
+    this.isMedicationSavedTabSelected =
+      event.tab.textLabel === 'Zapisane Medyczne';
   }
- 
-  constructor(private route: ActivatedRoute , private alpacaService : AlpacaService,public dialog: MatDialog,private snackBar: MatSnackBar, private router: Router) { }
+
+  constructor(
+    private route: ActivatedRoute,
+    private alpacaService: AlpacaService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router,
+  ) {}
 
   loadAlpaca(): void {
     if (this.alpacaId !== undefined) {
-      this.alpacaService.getAlpacaById(this.alpacaId).subscribe(alpaca => {
+      this.alpacaService.getAlpacaById(this.alpacaId).subscribe((alpaca) => {
         this.alpaca = alpaca;
       });
     }
@@ -37,31 +44,30 @@ export class AlpacaDetailComponent implements OnInit  {
 
   deleteAlpaca(): void {
     if (this.alpacaId !== undefined) {
-        this.alpacaService.deleteAlpaca(this.alpacaId).subscribe(() => {
-          this.snackBar.open('Alpaca deleted successfully!', 'Close', { duration: 2000 });
-          this.router.navigate([`/alpaca-list`]);
+      this.alpacaService.deleteAlpaca(this.alpacaId).subscribe(() => {
+        this.snackBar.open('Alpaca deleted successfully!', 'Close', {
+          duration: 2000,
         });
-      
+        this.router.navigate([`/alpaca-list`]);
+      });
     }
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AlpacaEditFormComponent, {
       width: '99%',
-      data: this.alpaca
+      data: this.alpaca,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.loadAlpaca();
       }
     });
-
   }
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.alpacaId = params['id']; 
-  
+    this.route.params.subscribe((params) => {
+      this.alpacaId = params['id'];
 
       if (this.alpacaId !== undefined) {
         this.loadAlpaca();
